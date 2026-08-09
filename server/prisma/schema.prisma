@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AccountStatus {
+  PENDING_PAYMENT
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id        String        @id @default(uuid())
+  fullName  String
+  email     String        @unique
+  phone     String
+  password  String
+  role      Role          @default(USER)
+  status    AccountStatus @default(PENDING_PAYMENT)
+  createdAt DateTime      @default(now())
+
+  payments  Payment[]
+  progress  Progress[]
+}
+
+model Payment {
+  id         String        @id @default(uuid())
+  userId     String
+  user       User          @relation(fields: [userId], references: [id])
+  method     String        // "TELEBIRR" | "CBE"
+  amount     Float
+  receiptUrl String?
+  status     PaymentStatus @default(PENDING)
+  createdAt  DateTime      @default(now())
+}
+
+model Module {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  icon        String   @default("📘")
+  order       Int      @default(0)
+  lessons     Lesson[]
+  quiz        Quiz?
+}
+
+model Lesson {
+  id       String @id @default(uuid())
+  moduleId String
+  module   Module @relation(fields: [moduleId], references: [id])
+  title    String
+  content  String
+  order    Int    @default(0)
+}
+
+model Quiz {
+  id        String     @id @default(uuid())
+  moduleId  String     @unique
+  module    Module     @relation(fields: [moduleId], references: [id])
+  questions Question[]
+}
+
+model Question {
+  id       String   @id @default(uuid())
+  quizId   String
+  quiz     Quiz     @relation(fields: [quizId], references: [id])
+  question String
+  options  String[]
+  answer   Int
+}
+
+model Progress {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  lessonId        String
+  completedAt     DateTime @default(now())
+
+  @@unique([userId, lessonId])
+}
