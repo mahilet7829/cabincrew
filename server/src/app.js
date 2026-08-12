@@ -17,7 +17,6 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/quizzes", quizRoutes);
-app.use("/uploads", express.static("uploads"));
 app.use("/api/settings", settingsRoutes);
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));

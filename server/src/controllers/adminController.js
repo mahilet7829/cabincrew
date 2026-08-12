@@ -1,4 +1,5 @@
 const prisma = require("../config/db");
+const { uploadVideoBuffer } = require("../services/cloudinaryService");
 
 // --- Payment approval ---
 async function getPendingPayments(req, res) {
@@ -56,9 +57,14 @@ async function createModule(req, res) {
 async function addLesson(req, res) {
   const { moduleId } = req.params;
   const { title, content, order } = req.body;
-  const videoUrl = req.file ? `/uploads/videos/${req.file.filename}` : null;
 
   try {
+    let videoUrl = null;
+    if (req.file) {
+      const result = await uploadVideoBuffer(req.file.buffer);
+      videoUrl = result.secure_url;
+    }
+
     const lesson = await prisma.lesson.create({
       data: {
         moduleId,
@@ -120,11 +126,15 @@ async function updateLesson(req, res) {
   const { lessonId } = req.params;
   const { title, content } = req.body;
   const data = { title, content };
-  if (req.file) data.videoUrl = `/uploads/videos/${req.file.filename}`;
+
+  if (req.file) {
+    const result = await uploadVideoBuffer(req.file.buffer);
+    data.videoUrl = result.secure_url;
+  }
+
   const lesson = await prisma.lesson.update({ where: { id: lessonId }, data });
   res.json(lesson);
 }
-
 async function deleteQuestion(req, res) {
   const { questionId } = req.params;
   await prisma.question.delete({ where: { id: questionId } });

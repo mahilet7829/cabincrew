@@ -39,8 +39,7 @@ export default function Lesson() {
   <video
     controls
     className="w-full rounded-xl mb-6 bg-ink"
-    src={`http://localhost:5000${lesson.videoUrl}`}
-  >
+    src={lesson.videoUrl}>
     Your browser does not support video playback.
   </video>
 )}
