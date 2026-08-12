@@ -1,12 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #eef6ff;
-  --color-brand-500: #0f6fde;
-  --color-brand-600: #0b57b0;
-  --color-brand-900: #0a2540;
+  --color-ink: #10171a;
+  --color-paper: #ffffff;
+  --color-signal: #c4f136;
+  --color-signal-dark: #a8d92c;
+  --color-slate-custom: #6b7280;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 }
 
 body {
-  @apply bg-slate-50 text-slate-800;
+  @apply bg-paper text-ink;
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono);
 }

@@ -3,6 +3,9 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const courseRoutes = require("./routes/courseRoutes");
+const quizRoutes = require("./routes/quizRoutes");
+const settingsRoutes = require("./routes/settingsRoutes");
 
 const app = express();
 
@@ -12,6 +15,10 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/courses", courseRoutes);
+app.use("/api/quizzes", quizRoutes);
+app.use("/uploads", express.static("uploads"));
+app.use("/api/settings", settingsRoutes);
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 

@@ -60,12 +60,13 @@ model Module {
 }
 
 model Lesson {
-  id       String @id @default(uuid())
+  id       String  @id @default(uuid())
   moduleId String
-  module   Module @relation(fields: [moduleId], references: [id])
+  module   Module  @relation(fields: [moduleId], references: [id])
   title    String
   content  String
-  order    Int    @default(0)
+  videoUrl String?
+  order    Int     @default(0)
 }
 
 model Quiz {
@@ -92,4 +93,8 @@ model Progress {
   completedAt     DateTime @default(now())
 
   @@unique([userId, lessonId])
+}
+model Setting {
+  key   String @id
+  value String
 }
