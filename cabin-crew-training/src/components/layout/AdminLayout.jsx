@@ -2,7 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const NAV_ITEMS = [
   { to: "/admin/payments", label: "Pending Payments", icon: "💳" },
-  { to: "/admin/courses", label: "Modules & Lessons", icon: "📚" },
+  { to: "/admin/modules", label: "Modules", icon: "📦" },
+  { to: "/admin/lessons", label: "Lessons", icon: "📖" },
+  { to: "/admin/quizzes", label: "Quizzes", icon: "❓" },
+  { to: "/admin/exams", label: "Mock Exams", icon: "📝" },
   { to: "/admin/users", label: "All Users", icon: "👥" },
   { to: "/admin/settings", label: "Settings", icon: "⚙️" },
 ];

@@ -16,6 +16,14 @@ export default function Home() {
             Safety drills, service standards, grooming, and real interview
             questions — structured the way an airline actually screens you.
           </p>
+          <h1 className="font-display font-bold text-4xl md:text-5xl leading-tight mb-5">
+  Get exam-ready<br />and interview-ready.
+</h1>
+<p className="text-slate-custom text-base mb-8 max-w-sm">
+  Safety drills, service standards, grooming, and real interview
+  questions — structured the way Ethiopian Airlines actually
+  screens and interviews candidates.
+</p>
           <div className="flex gap-3">
             <Link
               to="/signup"
@@ -61,11 +69,11 @@ export default function Home() {
       {/* Stats strip */}
       <div className="bg-ink rounded-2xl px-8 py-8 mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-paper">
         {[
-          ["4", "Training modules"],
-          ["30+", "Practice questions"],
-          ["90s", "Evacuation standard"],
-          ["1-on-1", "Interview prep"],
-        ].map(([stat, label]) => (
+  ["5", "Training modules"],
+  ["30+", "Practice questions"],
+  ["90s", "Evacuation standard"],
+  ["1-on-1", "Interview simulation"],
+].map(([stat, label]) => (
           <div key={label}>
             <p className="font-display font-bold text-2xl text-signal">{stat}</p>
             <p className="text-paper/60 text-sm">{label}</p>
