@@ -98,3 +98,20 @@ model Setting {
   key   String @id
   value String
 }
+model MockExam {
+  id          String            @id @default(uuid())
+  title       String
+  description String
+  timeLimit   Int               @default(30) // minutes
+  questions   MockExamQuestion[]
+  createdAt   DateTime          @default(now())
+}
+
+model MockExamQuestion {
+  id       String   @id @default(uuid())
+  examId   String
+  exam     MockExam @relation(fields: [examId], references: [id])
+  question String
+  options  String[]
+  answer   Int
+}
