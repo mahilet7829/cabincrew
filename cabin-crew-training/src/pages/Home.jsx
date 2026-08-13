@@ -10,13 +10,6 @@ export default function Home() {
             STATUS: READY FOR BOARDING
           </span>
           <h1 className="font-display font-bold text-4xl md:text-5xl leading-tight mb-5">
-            Get exam-ready<br />before the airline is.
-          </h1>
-          <p className="text-slate-custom text-base mb-8 max-w-sm">
-            Safety drills, service standards, grooming, and real interview
-            questions — structured the way an airline actually screens you.
-          </p>
-          <h1 className="font-display font-bold text-4xl md:text-5xl leading-tight mb-5">
   Get exam-ready<br />and interview-ready.
 </h1>
 <p className="text-slate-custom text-base mb-8 max-w-sm">
